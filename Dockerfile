@@ -8,8 +8,8 @@ RUN git clone https://github.com/lyfe00011/levanter.git /root/LyFE/
 
 WORKDIR /root/LyFE/
 
-# Inject baileys-pro dependency before install
-RUN jq '.dependencies["@fizzxydev/baileys-pro"] = "^8.7.2"' package.json > temp.json && mv temp.json package.json
+# Inject baileys-pro and joanimi/baileys dependencies before install
+RUN jq '.dependencies["@fizzxydev/baileys-pro"] = "^8.7.2" | .dependencies["@joanimi/baileys"] = "latest"' package.json > temp.json && mv temp.json package.json
 
 # Install dependencies
 RUN yarn install
